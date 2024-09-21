@@ -9,10 +9,15 @@
 </head>
 
 <body>
-  <div id="balance"></div>
-  <div id="income"></div>
-  <div id="coin" style="height: 130px;width: 130px; cursor: pointer; background-color: red;"></div>
-  <div id="cards" style="display: flex;"></div>
+  <div class="shadow m-4 p-4 d-flex align-items-center flex-column rounded-4 gap-4" style="width: 600px;">
+    <div id="balance" class="h2 text-primary"></div>
+    <div id="income" class="h4 text-success"></div>
+    <div id="coin"
+      style="height: 120px;width: 120px; cursor: pointer; border-radius: 100%; transition: all 200ms linear;"
+      class="shadow border bg-indigo-100">
+    </div>
+    <div id="cards" class="row g-2"></div>
+  </div>
   <script type="module" src="/src/main.ts">
   </script>
 </body>
