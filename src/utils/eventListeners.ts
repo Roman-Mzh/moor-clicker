@@ -22,7 +22,7 @@ export const runListeners = (game: ReturnType<typeof moorGame>) => {
       const btn = document.querySelector<HTMLButtonElement>(
         `#card-${name}-btn`,
       )!;
-      btn.innerText = `+${nextCpm.toFixed(2)} $${nextPrice.toFixed(2)} (${(nextPrice / nextCpm).toFixed(2)})`;
+      btn.innerText = `${nextCpm.toFixed(2)} $${nextPrice.toFixed(2)}`;
       btn.disabled = disabled;
       if (disabled) {
         btn.classList.remove('btn-primary');
