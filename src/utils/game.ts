@@ -2,15 +2,20 @@ import { calcCard } from './calc';
 import {
   type CardName,
   cardsNames,
+  type GameState,
   type MoorEventType,
-} from './Moor.interface';
+} from './interfaces/Moor.interface';
 
 export const moorGame = () => {
   const initialEvent: MoorEventType = {
     coinz: 0,
     timestamp: Date.now(),
-    cards: { Card1: 0, Card2: 0, Card3: 0 },
-    income: { Card1: 0, Card2: 0, Card3: 0 },
+    cards: Object.fromEntries(
+      cardsNames.map((name) => [name, 0]),
+    ) as MoorEventType['cards'],
+    income: Object.fromEntries(
+      cardsNames.map((name) => [name, 0]),
+    ) as MoorEventType['income'],
     totalIncome: 0,
   };
   const events: MoorEventType[] = [];
@@ -18,7 +23,7 @@ export const moorGame = () => {
     events.push(initialEvent);
   };
 
-  const getState = () => {
+  const getState = (): GameState => {
     const lastEvent = events.at(-1);
     if (!lastEvent) throw new Error('could not start game');
     const now = Date.now();
@@ -29,7 +34,7 @@ export const moorGame = () => {
     return { lastEvent, realCoinz };
   };
 
-  const click = () => {
+  const click = (): MoorEventType => {
     const { lastEvent, realCoinz } = getState();
     const nextEvent = {
       ...lastEvent,
@@ -41,7 +46,7 @@ export const moorGame = () => {
     return nextEvent;
   };
 
-  const upCard = (name: CardName) => {
+  const upCard = (name: CardName): MoorEventType => {
     const { lastEvent, realCoinz } = getState();
     const { nextPrice, nextCpm } = calcCard(name, lastEvent.cards[name]);
     if (nextPrice > Math.max(realCoinz, lastEvent.coinz))
