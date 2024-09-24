@@ -18,11 +18,11 @@ export const runListeners = (game: ReturnType<typeof moorGame>) => {
 
       document.getElementById(`card-${name}-level`)!.innerText = String(level);
       document.getElementById(`card-${name}-income`)!.innerText =
-        '+' + income.toFixed(2) + '/sec';
+        income.toFixed(2) + '/sec';
       const btn = document.querySelector<HTMLButtonElement>(
         `#card-${name}-btn`,
       )!;
-      btn.innerText = `${nextCpm.toFixed(2)} $${nextPrice.toFixed(2)}`;
+      btn.innerText = `+${nextCpm.toFixed(2)} $${nextPrice.toFixed(2)}`;
       btn.disabled = disabled;
       if (disabled) {
         btn.classList.remove('btn-primary');

@@ -32,7 +32,7 @@ const startGame = () => {
         <div class="d-flex justify-content-center">
           <div class="h6 text-success" id="card-${name}-income">${income.toFixed(2)}/sec</div>
         </div>
-        <button id="card-${name}-btn" class="btn btn-outline-${disabled ? 'secondary' : 'primary'}" ${disabled ? 'disabled="disabled"' : ''}>+${nextCpm.toFixed(2)} $${nextPrice.toFixed(2)}</button>
+        <button id="card-${name}-btn" class="btn btn-outline-${disabled ? 'secondary' : 'primary'}" ${disabled ? 'disabled="disabled"' : ''}>${nextCpm.toFixed(2)} $${nextPrice.toFixed(2)}</button>
       </div>
     </div>`;
   };
