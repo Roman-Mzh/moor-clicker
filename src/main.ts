@@ -22,24 +22,27 @@ const startGame = () => {
     const card = cards[name];
     const { nextCpm, nextPrice } = calcCard(name, level);
     const disabled = nextPrice > Math.max(lastEvent.totalIncome, realCoinz);
-    return `<div class="col-6">
-      <div class="border rounded-2 p-2 d-flex flex-column gap-2">
+    return `<div class="col-6 flex-grow-1">
+      <div class="border rounded-2 p-2 vstack gap-2 h-100">
         <div class="d-flex justify-content-between align-items-start w-100">
           <div class="h4">${card.name}</div>
           <div class="badge text-bg-light" id="card-${name}-level">${level}</div>
         </div>
-        <img class="img-fluid" src="${img(card.pic)}" style="max-height: 140px; object-fit: cover;" />
-        <div class="d-flex justify-content-center">
-          <div class="h6 text-success" id="card-${name}-income">${income.toFixed(2)}/sec</div>
+        <div class="d-flex flex-grow-1" style="max-width: 100%; max-height: 90px;">
+          <img class="img-fluid" src="${img(card.pic)}" style="object-fit: cover;" />
         </div>
-        <button id="card-${name}-btn" class="btn btn-outline-${disabled ? 'secondary' : 'primary'}" ${disabled ? 'disabled="disabled"' : ''}>${nextCpm.toFixed(2)} $${nextPrice.toFixed(2)}</button>
+        <div class="vstack align-items-center flex-grow-0">
+          <div class="h6" id="card-${name}-income">${income.toFixed(2)}/sec</div>
+          <div class="h6 text-success" id="card-${name}-next-income">+${nextCpm.toFixed(2)}/sec</div>
+        </div>
+        <button id="card-${name}-btn" class="btn btn-outline-${disabled ? 'secondary' : 'primary'}" ${disabled ? 'disabled="disabled"' : ''}>$${nextPrice.toFixed(2)}</button>
       </div>
     </div>`;
   };
 
   const drawGame = () => {
     const { realCoinz, lastEvent } = game.getState();
-    balance.innerText = realCoinz.toFixed(2);
+    balance.innerText = '$' + realCoinz.toFixed(2);
     income.innerText = '+' + lastEvent.totalIncome.toFixed(2) + '/sec';
 
     cardsList.innerHTML = cardsNames.map(buildCardHtml).join('');
