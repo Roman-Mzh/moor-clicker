@@ -1,4 +1,4 @@
-import { calcCard } from './calc';
+import { calcCard, totalCpm } from './calc';
 import {
   type CardName,
   cardsNames,
@@ -6,17 +6,26 @@ import {
   type MoorEventType,
 } from './interfaces/Moor.interface';
 
+const initialCards = () => {
+  let totalIncome = 0;
+  const cards = {} as MoorEventType['cards'];
+  const income = {} as MoorEventType['income'];
+  cardsNames.forEach((name) => {
+    const level = Math.round(Math.random() * 5);
+    const cpm = totalCpm(name, level);
+    cards[name] = level;
+    income[name] = cpm;
+    totalIncome += cpm;
+  });
+
+  return { cards, income, totalIncome };
+};
+
 export const moorGame = () => {
   const initialEvent: MoorEventType = {
-    coinz: 0,
+    coinz: 99999,
     timestamp: Date.now(),
-    cards: Object.fromEntries(
-      cardsNames.map((name) => [name, 0]),
-    ) as MoorEventType['cards'],
-    income: Object.fromEntries(
-      cardsNames.map((name) => [name, 0]),
-    ) as MoorEventType['income'],
-    totalIncome: 0,
+    ...initialCards(),
   };
   const events: MoorEventType[] = [];
   const start = () => {

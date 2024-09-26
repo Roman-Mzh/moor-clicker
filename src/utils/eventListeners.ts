@@ -1,5 +1,6 @@
 import { calcCard } from './calc';
 import { getCardElements, getElements } from './elements';
+import { formatIncome, formatPrice } from './formatters';
 import type { moorGame } from './game';
 import { cardsNames } from './interfaces/Moor.interface';
 
@@ -8,8 +9,8 @@ export const runListeners = (game: ReturnType<typeof moorGame>) => {
 
   const setData = () => {
     const { realCoinz, lastEvent } = game.getState();
-    balance.innerText = '$' + realCoinz.toFixed(2);
-    income.innerText = '+' + lastEvent.totalIncome.toFixed(2) + '/sec';
+    balance.innerText = formatPrice(realCoinz);
+    income.innerText = formatIncome(lastEvent.totalIncome);
     cardsNames.forEach((name) => {
       const level = lastEvent.cards[name];
       const { nextCpm, nextPrice } = calcCard(name, level);
@@ -23,10 +24,10 @@ export const runListeners = (game: ReturnType<typeof moorGame>) => {
         levelLabel.classList.add('text-bg-success');
         levelLabel.classList.remove('text-bg-light');
       }
-      incomeLabel.innerText = income.toFixed(2) + '/sec';
-      nextIncomeLabel.innerText = `+${nextCpm.toFixed(2)}/sec`;
+      incomeLabel.innerText = formatIncome(income);
+      nextIncomeLabel.innerHTML = formatIncome(nextCpm, true);
 
-      btn.innerText = `$${nextPrice.toFixed(2)}`;
+      btn.innerText = formatPrice(nextPrice);
       btn.disabled = disabled;
       if (disabled) {
         btn.classList.remove('btn-primary');

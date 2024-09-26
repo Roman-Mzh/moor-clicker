@@ -1,5 +1,6 @@
 export type MoorCardType = {
-  name: string;
+  id: CardName;
+  title: string;
   initialPrice: number;
   initialCpm: number;
   pic: string;

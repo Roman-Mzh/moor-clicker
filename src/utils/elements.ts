@@ -1,4 +1,4 @@
-import type { CardName } from './interfaces/Moor.interface';
+import type { CardName, MoorCardType } from './interfaces/Moor.interface';
 
 export const getElements = () => {
   const balance = document.querySelector<HTMLDivElement>('#balance');
@@ -20,4 +20,29 @@ export const getCardElements = (name: CardName) => {
     throw new Error('oops');
 
   return { levelLabel, incomeLabel, nextIncomeLabel, btn };
+};
+
+const img = (name: string) => {
+  return new URL(`/src/utils/pics/${name}.jpg`, import.meta.url).href;
+};
+
+export const buildCardHtml = (card: MoorCardType) => {
+  const { pic, title, id } = card;
+
+  return `<div class="col-6 flex-grow-1">
+    <div class="border rounded-2 p-2 vstack h-100 overflow-hidden">
+      <div class="d-flex flex-grow-1 mx-n2 mt-n2" style="max-height: 90px;">
+        <img class="img-fluid" src="${img(pic)}" style="object-fit: cover;" />
+      </div>
+      <div class="d-flex justify-content-between align-items-center w-100">
+        <div class="fs-4">${title}</div>
+        <div class="badge text-bg-light" id="card-${id}-level"></div>
+      </div>
+      <div class="vstack align-items-center flex-grow-0">
+        <div class="h6" id="card-${id}-income"></div>
+        <div class="h6 text-success" id="card-${id}-next-income"></div>
+      </div>
+      <button id="card-${id}-btn" class="btn"></button>
+    </div>
+  </div>`;
 };
