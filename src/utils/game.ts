@@ -1,4 +1,5 @@
 import { calcCard, totalCpm } from './calc';
+import { IS_DEV } from './constants/global';
 import {
   type CardName,
   cardsNames,
@@ -11,7 +12,7 @@ const initialCards = () => {
   const cards = {} as MoorEventType['cards'];
   const income = {} as MoorEventType['income'];
   cardsNames.forEach((name) => {
-    const level = Math.round(Math.random() * 5);
+    const level = IS_DEV ? Math.round(Math.random() * 5) : 0;
     const cpm = totalCpm(name, level);
     cards[name] = level;
     income[name] = cpm;
