@@ -1,5 +1,5 @@
 import { calcCard } from './calc';
-import { getCardElements, getElements } from './elements';
+import { bubble, getCardElements, getElements } from './elements';
 import { formatIncome, formatPrice } from './formatters';
 import type { moorGame } from './game';
 import { cardsNames } from './interfaces/Moor.interface';
@@ -51,8 +51,9 @@ export const runListeners = (game: ReturnType<typeof moorGame>) => {
     });
   });
 
-  coin.addEventListener('click', () => {
+  coin.addEventListener('click', ({ clientX, clientY }) => {
     game.click();
+    bubble(clientX, clientY);
     setData();
   });
   coin.addEventListener('mousedown', ({ offsetX, offsetY }) => {

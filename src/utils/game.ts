@@ -1,5 +1,6 @@
 import { calcCard, totalCpm } from './calc';
 import { IS_DEV } from './constants/global';
+import { SECONDS_FOR_INCOME } from './constants/rates';
 import {
   type CardName,
   cardsNames,
@@ -40,7 +41,8 @@ export const moorGame = () => {
 
     const realCoinz =
       lastEvent.coinz +
-      ((now - lastEvent.timestamp) / 1000) * lastEvent.totalIncome;
+      ((now - lastEvent.timestamp) / (1000 * SECONDS_FOR_INCOME)) *
+        lastEvent.totalIncome;
     return { lastEvent, realCoinz };
   };
 
