@@ -24,7 +24,7 @@ const initialCards = () => {
 
 export const moorGame = () => {
   const initialEvent: MoorEventType = {
-    coinz: 99999,
+    coinz: IS_DEV ? 99999 : 999,
     timestamp: Date.now(),
     ...initialCards(),
   };
