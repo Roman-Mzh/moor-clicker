@@ -27,6 +27,7 @@ export const GameProvider: FC<PropsWithChildren> = ({ children }) => {
 
     setState({ lastEvent: nextState, realCoinz: nextState.coinz });
   }, []);
+
   useEffect(() => {
     const i = setInterval(() => {
       setState(game.getState());

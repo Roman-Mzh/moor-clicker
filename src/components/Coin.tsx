@@ -1,4 +1,5 @@
 import { Box, Image, Stack, Text } from '@mantine/core';
+import { useRef } from 'react';
 import { bubble } from '../utils/elements';
 import { formatIncome, formatPrice } from '../utils/formatters';
 import { useGame } from '../utils/hooks/useGame';
@@ -12,13 +13,14 @@ export const Coin = () => {
       lastEvent: { totalIncome },
     },
   } = useGame();
+  const hasTouch = useRef(false);
   const handleClick = (e: React.MouseEvent) => {
+    if (hasTouch.current) return;
     bubble(e.clientX, e.clientY);
     click();
   };
   const handlePress = (e: React.TouchEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
+    hasTouch.current = true;
     const t = e.touches;
     click(t.length);
     for (let i = 0; i < t.length; i++) {
