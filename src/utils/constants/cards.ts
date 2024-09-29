@@ -1,6 +1,6 @@
 import type { CardName, MoorCardType } from '../interfaces/Moor.interface';
 
-export const cards: Record<CardName, MoorCardType> = {
+export const gameCards: Record<CardName, MoorCardType> = {
   Card1: {
     id: 'Card1',
     title: 'Трактор',

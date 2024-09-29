@@ -3,26 +3,14 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <link rel="icon" type="image/svg+xml" href="/sad-pepe.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vite + TS</title>
+  <title>Moor Clicker</title>
 </head>
 
 <body>
-  <div style="height: 100vh;">
-    <div class="shadow p-2 vstack align-items-center rounded-4 gap-2"
-      style="width: 100%; max-width: 600px; height: 100%;">
-      <div id="balance" class="fs-2 text-primary flex-shrink-0"></div>
-      <div id="income" class="fs-4 text-success flex-shrink-0"></div>
-      <div id="coin"
-        style="height: 120px;width: 120px; cursor: pointer; border-radius: 100%; transition: all 200ms linear; overflow: hidden;"
-        class="shadow border bg-indigo-100  flex-shrink-0">
-        <img src="./src/utils/pics/coin.jpg" style="object-fit: fill;" height="100%" />
-      </div>
-      <div id="cards" class="row g-2 overflow-scroll"></div>
-    </div>
-  </div>
-  <script type="module" src="/src/main.ts">
+  <div style="height: 100vh;" id="app"></div>
+  <script type="module" src="/src/main.tsx">
   </script>
 </body>
 

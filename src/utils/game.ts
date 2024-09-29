@@ -46,13 +46,14 @@ export const moorGame = () => {
     return { lastEvent, realCoinz };
   };
 
-  const click = (): MoorEventType => {
+  const click = (qty: number = 1): MoorEventType => {
     const { lastEvent, realCoinz } = getState();
     const nextEvent = {
       ...lastEvent,
-      coinz: Math.max(realCoinz, lastEvent.coinz) + 10,
+      coinz: Math.max(realCoinz, lastEvent.coinz) + 10 * qty,
       timestamp: Date.now(),
     };
+    events.pop(); // =)
     events.push(nextEvent);
 
     return nextEvent;
@@ -86,3 +87,5 @@ export const moorGame = () => {
   start();
   return { getState, click, upCard };
 };
+
+export const game = moorGame();

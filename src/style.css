@@ -1,0 +1,14 @@
+.moor-bubble {
+  height: 20px;
+  width: 20px;
+  background-color: #b9d1f7;
+  transition: all 1s linear;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 10px 10px #b9d1f7;
+  font-size: 20px;
+  color: rgb(217, 96, 36);
+  border-radius: 100%;
+}
