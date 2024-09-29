@@ -17,6 +17,7 @@ export const Coin = () => {
     click();
   };
   const handlePress = (e: React.TouchEvent) => {
+    e.preventDefault();
     const t = e.touches;
     click(t.length);
     for (let i = 0; i < t.length; i++) {
