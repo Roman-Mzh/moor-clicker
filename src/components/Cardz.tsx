@@ -1,4 +1,13 @@
-import { Badge, Card, Flex, Grid, Image, Stack, Text } from '@mantine/core';
+import {
+  Badge,
+  Card,
+  Flex,
+  Grid,
+  Group,
+  Image,
+  Stack,
+  Text,
+} from '@mantine/core';
 import { useMemo } from 'react';
 import { calcCard } from '../utils/calc';
 import { gameCards } from '../utils/constants/cards';
@@ -15,7 +24,7 @@ export const Cardz = () => {
   const {
     state: {
       realCoinz,
-      lastEvent: { cards, income },
+      lastEvent: { cards, income, totalIncome },
     },
   } = useGame();
 
@@ -37,14 +46,16 @@ export const Cardz = () => {
                 <Stack>
                   <Flex align={'center'} gap={'xs'}>
                     <Badge color="teal">{lv}</Badge>
-                    <Text style={{ flexGrow: 1 }}>{title}</Text>
+                    <Text span style={{ flexGrow: 1 }}>
+                      {title}
+                    </Text>
                   </Flex>
                   <Flex align="baseline" justify={'center'} gap="xs">
-                    <Text fw={800} fz="xl">
+                    <Text span fw={800} fz="xl">
                       {formatIncome(inc)}
                     </Text>
-                    <Text size="xs" c="teal">
-                      ({formatIncome(nextCpm)})
+                    <Text span size="xs" c="teal">
+                      ({formatIncome(nextCpm, true)})
                     </Text>
                   </Flex>
                   <BuyButton {...{ id, lv }} />
@@ -59,15 +70,21 @@ export const Cardz = () => {
 
   return (
     <Stack gap={0} mih={0} style={{ flexGrow: 1 }} mah="100%">
-      <Flex
+      <Group
         justify={'end'}
         p="xs"
         style={{
           boxShadow: 'var(--mantine-shadow-sm)',
         }}
       >
-        <Text fw={800}>{formatPrice(realCoinz)}</Text>
-      </Flex>
+        <Text span fw={800}>
+          {formatPrice(realCoinz)}
+        </Text>
+
+        <Text fs="xs" c="teal" span>
+          {formatIncome(totalIncome)}
+        </Text>
+      </Group>
       <Grid gutter={'xs'} p="xs" overflow="auto" mih={0}>
         {cardCardz}
       </Grid>

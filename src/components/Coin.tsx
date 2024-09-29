@@ -29,6 +29,7 @@ export const Coin = () => {
   return (
     <Stack h="100%" align="center" p="xs" mih={0} style={{ overflow: 'auto' }}>
       <Text
+        span
         variant="gradient"
         gradient={{ from: 'red', to: 'blue' }}
         fz={50}
@@ -36,13 +37,13 @@ export const Coin = () => {
       >
         {formatPrice(realCoinz)}
       </Text>
-      <Text c="teal" fz={40} style={{ flexGrow: 1 }}>
+      <Text span c="teal" fz={40} style={{ flexGrow: 1 }}>
         {formatIncome(totalIncome)}
       </Text>
       <Box p="xl">
         <Image
           onTouchStart={handlePress}
-          onClick={handleClick}
+          onMouseDown={handleClick}
           src={h}
           style={{
             borderRadius: '100%',

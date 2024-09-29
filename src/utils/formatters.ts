@@ -7,4 +7,4 @@ export const formatPrice = (e: number) =>
 export const formatIncome = (e: number, arrow?: boolean) =>
   '+' +
   e.toLocaleString('RU-ru', { maximumFractionDigits: 2 }) +
-  (arrow ? '&uarr;' : '');
+  (arrow ? '↑' : '');
